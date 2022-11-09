@@ -50,4 +50,4 @@ jobs:
           app-name: 'pizza365'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D5F5BC95489340C8B4FDB312B4D7D232 }}
-          package: '*.jar'
+          package: '*.war'
