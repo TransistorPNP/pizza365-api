@@ -54,7 +54,7 @@ public class DrinkController {
     }
 
     @PutMapping("/drinks/{id}")
-    public ResponseEntity<Object> updateDrinkById(@Valid @RequestBody Drink newDrink, @PathVariable Integer id) {
+    public ResponseEntity<Object> updateDrinkById(@RequestBody Drink newDrink, @PathVariable Integer id) {
         try {
             Optional<Drink> optional = drinkRepository.findById(id);
             if (!optional.isPresent()) {
@@ -62,9 +62,14 @@ public class DrinkController {
             }
 
             Drink thisDrink = optional.get();
+            if (newDrink.getMaNuocUong() != null) {
+                thisDrink.setMaNuocUong(newDrink.getMaNuocUong());
+            }
 
-            thisDrink.setMaNuocUong(newDrink.getMaNuocUong());
-            thisDrink.setTenNuocUong(newDrink.getTenNuocUong());
+            if (thisDrink.getTenNuocUong() != null) {
+                thisDrink.setTenNuocUong(newDrink.getTenNuocUong());
+            }
+
             if (newDrink.getDonGia() != 0) {
                 thisDrink.setDonGia(newDrink.getDonGia());
             }
